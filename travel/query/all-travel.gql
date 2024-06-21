@@ -2,16 +2,10 @@
     travel {
         uuid,
         name,
-        description,
+        slug,
         startingDate,
         endingDate,
         availableSeats,
-        moods {
-            culture,
-            history,
-            nature,
-            party,
-            relax
-        }
+        price,
     }
 }

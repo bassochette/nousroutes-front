@@ -1,12 +1,15 @@
 <template>
-  <h1 class="text-3xl font-bold underline">
-    {{JSON.stringify(data)}}
-  </h1>
+  <NuxtPage />
 </template>
 
-<script setup lang="ts">
-import allTravelQuery from './travel/query/all-travel.gql'
-
-const { data } = useAsyncQuery(allTravelQuery)
-
-</script>
+<style>
+.page-enter-active,
+.page-leave-active {
+  transition: all 0.4s;
+}
+.page-enter-from,
+.page-leave-to {
+  opacity: 0;
+  filter: blur(1rem);
+}
+</style>
