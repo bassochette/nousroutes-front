@@ -1,0 +1,17 @@
+{
+    travel {
+        uuid,
+        name,
+        description,
+        startingDate,
+        endingDate,
+        availableSeats,
+        moods {
+            culture,
+            history,
+            nature,
+            party,
+            relax
+        }
+    }
+}
