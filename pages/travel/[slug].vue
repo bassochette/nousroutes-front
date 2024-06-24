@@ -28,7 +28,14 @@
     {{ data?.travelBySlug.description }}
   </section>
   <section class="flex justify-center">
+    <div
+      v-if="data?.travelBySlug.availableSeats == 0"
+      class="flex flex-col items-center justify-center bg-gray-200 rounded md:w-3/12 p-10 text-2xl text-red-600"
+    >
+      This adventure is full
+    </div>
     <form
+      v-if="data?.travelBySlug.availableSeats > 0"
       action="#"
       class="flex flex-col items-center justify-center bg-gray-200 rounded md:w-3/12 p-10"
       @submit="handleReservation($event)"
@@ -141,9 +148,7 @@ const handleReservation = async (event: Event) => {
       travelUuid: data.value?.travelBySlug.uuid,
     });
 
-    console.log(bookingResponse?.data);
-
-    navigateTo(`/payment/${bookingResponse?.data.bookingReservation.uuid}`);
+    window.location.href = `/payment/${bookingResponse?.data.bookingReservation.uuid}`;
   } catch (error) {
     console.error(error);
   }
