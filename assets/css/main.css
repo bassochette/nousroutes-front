@@ -9,3 +9,7 @@ div#__nuxt {
 body {
    @apply bg-blue-100;
 }
+
+.primaryButton {
+    @apply bg-purple-500 p-4 text-white rounded
+}

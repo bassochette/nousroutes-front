@@ -1,4 +1,19 @@
-# Full stack Typescript hiring test
+# NousRoutes frontend
+
+install dependencies: `npm ci`
+
+start the app: `npm run dev`
+
+url: http://localhost:3000
+
+## improvement
+
+- better management loading
+- better error management
+- use Nuxt routing effectively (new to nuxt and view and built somthing that works)
+- refactoring with better nuxt/vue knwoledges
+
+# Test
 
 ## Use case
 Implement a checkout process for WeRoad users to buy a Travel where:
