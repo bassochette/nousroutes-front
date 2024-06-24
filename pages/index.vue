@@ -2,17 +2,17 @@
   <header
     class="flex justify-center align-middle py-20 bg-[url('/img/hero-bg.jpg')] bg-center"
   >
-    <h1 class="text-4xl text-white bg-purple-500 p-10">
+    <h1 class="text-3xl md:text-4xl text-white bg-purple-500 p-10">
       What's your next adventure?
     </h1>
   </header>
-  <main class="p-3 bg-blue-100 h-full">
+  <main class="p-3 h-full">
     <div
       v-for="travel in data.travel"
       :key="travel.slug"
-      class="flex justify-between p-4 border-purple-500 items-center rounded border-2 my-2 bg-purple-50 font-bold"
+      class="flex flex-col justify-between p-4 border-purple-500 items-center rounded border-2 my-2 bg-purple-50 font-bold"
     >
-      <div class="flex items-center">
+      <div class="flex items-center mb-5">
         <span class="text-2xl text-stone-700 text-center">
           {{ travel.name }}
         </span>
@@ -23,19 +23,19 @@
       </div>
       <div>
         <span class="mr-3">{{ travel.availableSeats }} seats left</span>
-        <NuxtLink
+        <a
           class="bg-amber-300 font-bold rounded p-4"
-          :to="{ name: 'travel-slug', params: { slug: travel.slug } }"
+          :href="'/travel/' + travel.slug"
         >
           Book for {{ travel.price / 100 }}€
-        </NuxtLink>
+        </a>
       </div>
     </div>
   </main>
 </template>
 
 <script setup lang="ts">
-import allTravelQuery from "../travel/query/all-travel.gql";
+import { gql } from "#imports";
 
 const { data } = await useAsyncQuery<{
   travel: {
@@ -45,6 +45,17 @@ const { data } = await useAsyncQuery<{
     availableSeats: number;
     price: number;
   }[];
-}>(allTravelQuery);
-console.log(data.value);
+}>(gql`
+  {
+    travel {
+      uuid
+      name
+      slug
+      startingDate
+      endingDate
+      availableSeats
+      price
+    }
+  }
+`);
 </script>

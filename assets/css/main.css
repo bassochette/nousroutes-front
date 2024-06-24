@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
-#__nuxt {
+div#__nuxt {
     height: 100vh;
+}
+
+body {
+   @apply bg-blue-50
 }

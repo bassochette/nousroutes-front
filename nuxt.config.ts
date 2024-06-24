@@ -17,7 +17,7 @@ export default defineNuxtConfig({
   apollo: {
     clients: {
       default: {
-        httpEndpoint: "http://localhost:5000/graphql", // in real app load from env var or a config vault
+        httpEndpoint: "http://localhost:5000/graphql", // in real app load from env var or a config vault,
       },
     },
   },
