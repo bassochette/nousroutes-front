@@ -8,6 +8,7 @@
   </header>
   <main class="p-3 h-full">
     <div
+      v-if="data"
       v-for="travel in data.travel"
       :key="travel.slug"
       class="flex flex-col justify-between p-4 border-purple-500 items-center rounded border-2 my-2 bg-purple-50 font-bold"
@@ -44,6 +45,8 @@ const { data } = await useAsyncQuery<{
     description: string;
     availableSeats: number;
     price: number;
+    startingDate: string;
+    endingDate: string;
   }[];
 }>(gql`
   {

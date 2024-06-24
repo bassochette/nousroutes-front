@@ -5,7 +5,7 @@
       {{ data?.travelBySlug.startingDate.split("T")[0] }} /
       {{ data?.travelBySlug.endingDate.split("T")[0] }}
     </span>
-    <span> {{ data?.travelBySlug.price / 100 }} € </span>
+    <span v-if="data"> {{ data?.travelBySlug.price / 100 }} € </span>
   </header>
   <section class="flex justify-center items-center my-4">
     <div class="border-green-500 border-4 rounded-full mx-3 p-2">
@@ -35,7 +35,7 @@
       This adventure is full
     </div>
     <form
-      v-if="data?.travelBySlug.availableSeats > 0"
+      v-if="data && data.travelBySlug.availableSeats > 0"
       action="#"
       class="flex flex-col items-center justify-center bg-gray-200 rounded md:w-3/12 p-10"
       @submit="handleReservation($event)"
@@ -86,8 +86,8 @@ interface TravelBySlug {
   description: string;
   price: number;
   availableSeats: number;
-  endingDate: Date;
-  startingDate: Date;
+  endingDate: string;
+  startingDate: string;
   moods: {
     relax: number;
     party: number;

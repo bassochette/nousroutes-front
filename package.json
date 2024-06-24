@@ -1,6 +1,11 @@
 {
   "name": "weroad-front",
   "description": "technical case Julien Prugne<julien@webeleon.dev>",
+  "author": {
+    "email": "julien@webeleon.dev",
+    "name": "Julien Prugne",
+    "url": "https://webeleon.dev"
+  },
   "private": true,
   "type": "module",
   "scripts": {

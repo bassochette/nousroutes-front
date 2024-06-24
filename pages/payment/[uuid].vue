@@ -9,7 +9,7 @@ td {
 
 <template>
   <header class="flex items-center justify-center mb-5">
-    <h2 class="text-3xl">{{ data.bookingByUuid.travel.name }}</h2>
+    <h2 v-if="data" class="text-3xl">{{ data.bookingByUuid.travel.name }}</h2>
   </header>
   <main class="flex flex-col justify-center items-center">
     <h3 class="text-2xl mb-5">Summary</h3>
@@ -17,35 +17,35 @@ td {
       <tr>
         <td>email</td>
         <td>
-          {{ data.bookingByUuid.client }}
+          {{ data?.bookingByUuid.client }}
         </td>
       </tr>
       <tr>
         <td>seats</td>
-        <td>
+        <td v-if="data">
           {{ data.bookingByUuid.seats }}
         </td>
       </tr>
-      <tr>
+      <tr >
         <td>departure</td>
-        <td>{{ data.bookingByUuid.travel.startingDate.split("T")[0] }}</td>
+        <td>{{ data?.bookingByUuid.travel.startingDate.split("T")[0] }}</td>
       </tr>
       <tr>
         <td>return</td>
-        <td>{{ data.bookingByUuid.travel.endingDate.split("T")[0] }}</td>
+        <td>{{ data?.bookingByUuid.travel.endingDate.split("T")[0] }}</td>
       </tr>
     </table>
     <button
       v-if="
-        !data.bookingByUuid.expired && !paid && !data.bookingByUuid.confirmed
+        !data?.bookingByUuid.expired && !paid && !data?.bookingByUuid.confirmed
       "
       class="bg-purple-500 rounded p-4 text-white"
       @click="handlePayment()"
     >
       Pay
-      {{ (data.bookingByUuid.travel.price / 100) * data.bookingByUuid.seats }} €
+      {{ ((data?.bookingByUuid.travel.price ?? 0) / 100) * (data?.bookingByUuid.seats ?? 0) }} €
     </button>
-    <div v-if="paid || data.bookingByUuid.confirmed">
+    <div v-if="paid || data?.bookingByUuid.confirmed">
       Pack your bag for your next adventure
     </div>
   </main>
@@ -60,11 +60,12 @@ interface Booking {
     confirmed: boolean;
     createdAt: Date;
     client: string;
+    expired: boolean;
     travel: {
       name: string;
       price: number;
-      startingDate: Date;
-      endingDate: Date;
+      startingDate: string;
+      endingDate: string;
     };
   };
 }
